@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "U2", "U2\U2.csproj", "{D504B08F-8714-4948-8DA9-4051E116E440}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "U2API", "U2\U2API.csproj", "{D504B08F-8714-4948-8DA9-4051E116E440}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{77248987-A539-410E-A8F1-78C0E9C7469F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +20,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D504B08F-8714-4948-8DA9-4051E116E440} = {77248987-A539-410E-A8F1-78C0E9C7469F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {833E9E8B-EDFE-45DF-B691-AF3420B4E3B5}
