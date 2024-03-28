@@ -7,5 +7,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Build
+        working-directory: ./Services/U2API
         run: dotnet build
 
