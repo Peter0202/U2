@@ -7,6 +7,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Build
-        working-directory: ${{env.working-directory}}
+        working-directory: Services
         run: dotnet build
 
