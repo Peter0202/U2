@@ -3,10 +3,10 @@ name: Build and test
 on: [push]
 
 jobs:
-  build:
+  Build:
     runs-on: windows-latest
     steps:
       - name: Build
-        working-directory: ./Services/U2API
+        working-directory: ./Services
         run: dotnet build
 
