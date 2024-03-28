@@ -1,0 +1,15 @@
+name: Build and test 
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Build
+        run: dotnet build
+  test:
+     runs-on: windows-latest
+     steps:
+      - name: Test with the dotnet CLI
+        run: dotnet test
