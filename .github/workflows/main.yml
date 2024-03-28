@@ -7,6 +7,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Build
-        working-directory: C:\FHICT\S6\Individual\U2
+        working-directory: ./
         run: dotnet build
 
