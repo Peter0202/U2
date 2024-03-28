@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "U2API", "U2\U2API.csproj", "{D504B08F-8714-4948-8DA9-4051E116E440}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{77248987-A539-410E-A8F1-78C0E9C7469F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "U2API", "Services\U2API\U2API.csproj", "{BA711DFD-DB64-4A01-A9B3-BB0242B8EA57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,16 +13,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D504B08F-8714-4948-8DA9-4051E116E440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D504B08F-8714-4948-8DA9-4051E116E440}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D504B08F-8714-4948-8DA9-4051E116E440}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D504B08F-8714-4948-8DA9-4051E116E440}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA711DFD-DB64-4A01-A9B3-BB0242B8EA57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA711DFD-DB64-4A01-A9B3-BB0242B8EA57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA711DFD-DB64-4A01-A9B3-BB0242B8EA57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA711DFD-DB64-4A01-A9B3-BB0242B8EA57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{D504B08F-8714-4948-8DA9-4051E116E440} = {77248987-A539-410E-A8F1-78C0E9C7469F}
+		{BA711DFD-DB64-4A01-A9B3-BB0242B8EA57} = {77248987-A539-410E-A8F1-78C0E9C7469F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {833E9E8B-EDFE-45DF-B691-AF3420B4E3B5}
