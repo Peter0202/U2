@@ -14,6 +14,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Build
-        working-directory: ./Services/U2API
+        working-directory: C:\FHICT\S6\Individual\U2\Services\U2API
         run: dotnet build 
 
