@@ -6,25 +6,19 @@ on:
       - main
 
 env:
-  NETCORE_VERSION: '8.0'                    # set this to the .NET Core version to use
+  NETCORE_VERSION: '8.0'                   
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+        - uses: actions/checkout@v2
     
-    - name: Setup .NET Core SDK ${{ env.NETCORE_VERSION }}
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: ${{ env.NETCORE_VERSION }}
-    
-    - name: Restore packages
-      run: dotnet restore
+        - name: Build app
+          working-directory: ./Services/U2API
+          run: dotnet build 
 
-    - name: Build app
-      run: dotnet build 
-
-    - name: Test app
-      run: dotnet test --no-build
+        - name: Test app
+          working-directory: ./Services/UnitTests
+          run: dotnet test --no-build
