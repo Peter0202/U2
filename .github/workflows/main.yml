@@ -16,7 +16,7 @@ jobs:
         - uses: actions/checkout@v2
     
         - name: Build app
-          working-directory: ./Services/U2API
+          working-directory: ./Services/U2APIGateway
           run: dotnet build 
 
         - name: Test app
