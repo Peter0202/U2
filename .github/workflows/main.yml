@@ -15,8 +15,16 @@ jobs:
     steps:
         - uses: actions/checkout@v2
     
-        - name: Build app
-          working-directory: ./Services/U2APIGateway
+        - name: Build gateway
+          working-directory: ./Services/APIGateway
+          run: dotnet build 
+
+        - name: Build user service
+          working-directory: ./Services/UserService
+          run: dotnet build 
+
+        - name: Build video service
+          working-directory: ./Services/VideoService
           run: dotnet build 
 
         - name: Test app
