@@ -1,0 +1,17 @@
+{
+  "Routes": [
+    //Test method
+    {
+      "DownstreamPathTemplate": "/WeatherForecast",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7168
+        }
+      ],
+      "UpstreamPathTemplate": "/WeatherDetails",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ]
+}
