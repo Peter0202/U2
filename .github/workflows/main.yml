@@ -27,6 +27,12 @@ jobs:
           working-directory: ./Services/VideoService
           run: dotnet build 
 
+        - name: Build client
+          working-directory: ./u2-client
+          run: | 
+            npm ci
+            npm run build
+            
         - name: Test app
           working-directory: ./Services/UnitTests
           run: dotnet test --no-build
