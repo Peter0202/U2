@@ -1,16 +1,30 @@
 {
   "Routes": [
-    //Test method
+    //User Service Test method
     {
       "DownstreamPathTemplate": "/WeatherForecast",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7168
+          "Port": 7000
         }
       ],
-      "UpstreamPathTemplate": "/WeatherDetails",
+      "UpstreamPathTemplate": "/Users",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    //Video Service Test Method
+    {
+      "DownstreamPathTemplate": "/WeatherForecast",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6001
+        }
+      ],
+      "UpstreamPathTemplate": "/Videos",
       "UpstreamHttpMethod": [ "GET" ]
     }
   ]

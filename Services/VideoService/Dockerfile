@@ -3,23 +3,25 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 6000
+EXPOSE 6001
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Services/U2API/U2API.csproj", "Services/U2API/"]
-RUN dotnet restore "./Services/U2API/U2API.csproj"
+COPY *.csproj VideoService/
+RUN dotnet restore "VideoService/VideoService.csproj"
+
+WORKDIR "/src/Services/VideoService"
 COPY . .
-WORKDIR "/src/Services/U2API"
-RUN dotnet build "./U2API.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+RUN dotnet build "./VideoService.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./U2API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./VideoService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "U2API.dll"]
+ENTRYPOINT ["dotnet", "VideoService.dll"]
