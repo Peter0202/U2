@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using UserService.Models;
 
 namespace UserService.Controllers
 {
@@ -29,5 +30,21 @@ namespace UserService.Controllers
             })
             .ToArray();
         }
+
+        [HttpPost()]
+        [Route("api/{username}")]
+        public void Post(string username)
+        {
+            using (var context = new AppDbContext()) {
+
+
+                UserService.Models.User user = new UserService.Models.User();
+                user.Username = username;
+                context.User.Add(user);
+                context.SaveChanges();
+            }
+            
+        }
+
     }
 }
