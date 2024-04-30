@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using UserService.Models;
+using VideoService.Models;
+using VideoService.Services;
 
 namespace U2.Controllers
 {
@@ -6,28 +9,32 @@ namespace U2.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
 
+        private readonly IVideoService _videoService;
+       
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IVideoService videoService)
         {
-            _logger = logger;
+            _logger = logger;  
+            _videoService = videoService;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable<Video> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            return _videoService.GetAllVideos();
+        }
+
+        [HttpPost()]
+        [Route("api/{title}")]
+        public void Post(string title)
+        {
+            Video newVideo = new Video()
             {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = 69,
-                Summary = "hui"
-            })
-            .ToArray();
+                Title = title
+            };
+            _videoService.AddVideo(newVideo);
         }
     }
 }
