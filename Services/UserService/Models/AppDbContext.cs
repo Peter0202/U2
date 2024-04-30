@@ -8,7 +8,12 @@ namespace UserService.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
-            optionBuilder.UseMySQL("server=localhost;database=u2_users;uid=root;pwd=12345");
+            IConfigurationRoot configuration = new ConfigurationBuilder()
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddJsonFile("appsettings.json")
+            .Build();
+
+            optionBuilder.UseMySQL(configuration.GetConnectionString("UserDatabase"));
         }
     }
 }
