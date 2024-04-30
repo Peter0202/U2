@@ -46,5 +46,20 @@ namespace UserService.Controllers
             
         }
 
+        [HttpDelete()]
+        [Route("api/{id}")]
+        public void Delete(int id)
+        {
+            using (var context = new AppDbContext())
+            {
+                User? user = context.Find<User>(id);
+                if (user != null)
+                {
+                    context.Remove(user);
+                    context.SaveChanges();
+                }
+            }
+        }
+
     }
 }
