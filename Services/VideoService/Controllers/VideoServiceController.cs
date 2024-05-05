@@ -24,7 +24,11 @@ namespace U2.Controllers
         [ActionName("GetAllVideos")]
         public IEnumerable<Video> GetAll()
         {
+            List<Video> videos = _videoService.GetVideos().ToList();
+            var stringId = videos.First().Id.ToString();
+            Console.WriteLine(stringId);
             return _videoService.GetVideos();
+   
         }
 
         [HttpGet()]
@@ -33,6 +37,14 @@ namespace U2.Controllers
         public Video? GetVideo(string title)
         {
             return _videoService.GetByTitle(title);
+        }
+
+        [HttpGet()]
+        [ActionName("GetVideoById")]
+        [Route("{id}")]
+        public Video? GetVideoById(string id)
+        {
+            return _videoService.GetById(id);
         }
 
         [HttpPost()]
@@ -54,10 +66,10 @@ namespace U2.Controllers
         }
 
         [HttpPut()]
-        [Route("{title}")]
-        public void Put(string title)
+        [Route("{id}")]
+        public void Put(string id)
         {
-            Video? video = _videoService.GetByTitle(title);
+            Video? video = _videoService.GetById(id);
             if (video != null)
             {
                 _videoService.UpdateVideo(video);

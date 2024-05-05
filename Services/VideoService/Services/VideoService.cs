@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MongoDB.Bson;
+using MongoDB.Driver.Linq;
 using UserService.Models;
 using VideoService.Models;
 using VideoService.Services.Interfaces;
@@ -16,7 +17,7 @@ namespace VideoService.Services
         }
 
         public IEnumerable<Video> GetVideos()
-        {
+        { 
             return _context.Video.AsNoTracking().AsEnumerable();
         }
 
@@ -46,9 +47,14 @@ namespace VideoService.Services
 
         public void UpdateVideo(Video video)
         {
-            _context.Update(video);
+            _context.Video.Update(video);
             _context.ChangeTracker.DetectChanges();
             _context.SaveChanges();
+        }
+
+        public Video? GetById(string id)
+        {
+            return _context.Video.FirstOrDefault(x => x.Id == ObjectId.Parse(id));
         }
     }
 }

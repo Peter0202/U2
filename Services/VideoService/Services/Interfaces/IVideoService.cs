@@ -10,5 +10,6 @@ namespace VideoService.Services.Interfaces
         void AddVideo(Video newVideo);
         void UpdateVideo(Video video);
         void DeleteVideo(string title);
+        Video? GetById(string id);
     }
 }
