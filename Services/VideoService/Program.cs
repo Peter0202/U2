@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using UserService.Models;
-using VideoService.Services;
+using VideoService.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 var allowSpecificOrigins = "dev";
