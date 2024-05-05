@@ -29,10 +29,10 @@ namespace U2.Controllers
 
         [HttpGet()]
         [ActionName("GetVideo")]
-        [Route("{id}")]
-        public Video? GetVideo(ObjectId id)
+        [Route("{title}")]
+        public Video? GetVideo(string title)
         {
-            return _videoService.GetById(id);
+            return _videoService.GetByTitle(title);
         }
 
         [HttpPost()]
@@ -47,17 +47,17 @@ namespace U2.Controllers
         }
 
         [HttpDelete()]
-        [Route("{id}")]
-        public void Delete(ObjectId id)
+        [Route("{title}")]
+        public void Delete(string title)
         {
-            _videoService.DeleteVideo(id);
+            _videoService.DeleteVideo(title);
         }
 
         [HttpPut()]
-        [Route("{id}")]
-        public void Put(ObjectId id)
+        [Route("{title}")]
+        public void Put(string title)
         {
-            Video? video = _videoService.GetById(id);
+            Video? video = _videoService.GetByTitle(title);
             if (video != null)
             {
                 _videoService.UpdateVideo(video);

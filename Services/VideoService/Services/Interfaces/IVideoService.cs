@@ -6,9 +6,9 @@ namespace VideoService.Services.Interfaces
     public interface IVideoService
     {
         IEnumerable<Video> GetVideos();
-        Video? GetById(ObjectId id);
+        Video? GetByTitle(string title);
         void AddVideo(Video newVideo);
         void UpdateVideo(Video video);
-        void DeleteVideo(ObjectId id);
+        void DeleteVideo(string title);
     }
 }

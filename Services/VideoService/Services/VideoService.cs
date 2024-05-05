@@ -20,9 +20,9 @@ namespace VideoService.Services
             return _context.Video.AsNoTracking().AsEnumerable();
         }
 
-        public Video? GetById(ObjectId id)
+        public Video? GetByTitle(string title)
         {
-            return _context.Video.FirstOrDefault(x => x.Id == id);
+            return _context.Video.FirstOrDefault(x => x.Title == title);
         }
 
         public void AddVideo(Video newVideo)
@@ -32,9 +32,9 @@ namespace VideoService.Services
             _context.SaveChanges();
         }
 
-        public void DeleteVideo(ObjectId id)
+        public void DeleteVideo(string title)
         {
-            Video? video = GetById(id);
+            Video? video = GetByTitle(title);
             if (video != null)
             {
                 _context.Video.Remove(video);
