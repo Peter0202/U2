@@ -22,7 +22,7 @@ namespace U2.Controllers
 
         [HttpGet()]
         [ActionName("GetAllVideos")]
-        public IEnumerable<Video> GetAll()
+        public IEnumerable<Video> GetAllVideos()
         {
             List<Video> videos = _videoService.GetVideos().ToList();
             var stringId = videos.First().Id.ToString();
