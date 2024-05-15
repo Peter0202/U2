@@ -3,12 +3,14 @@ import { Button } from "@mui/material";
 
 
 const LogoutButton = () => {
-    const { logout } = useAuth0();
+    const { logout, isAuthenticated } = useAuth0();
 
     return (
-        <Button variant="outlined" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-            Log Out
-        </Button>
+        isAuthenticated && (
+            <Button variant="outlined" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+                Log Out
+            </Button>
+        )
     );
 }
 

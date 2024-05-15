@@ -3,12 +3,14 @@ import { Button } from "@mui/material";
 
 
 const LoginButton = () => {
-    const { loginWithRedirect } = useAuth0();
+    const { loginWithRedirect, isAuthenticated } = useAuth0();
 
     return (
-        <Button variant="outlined" onClick={() => loginWithRedirect()}>
-            Log In
-        </Button>
+        !isAuthenticated && (
+            <Button variant="outlined" onClick={() => loginWithRedirect()}>
+                Log In
+            </Button>
+        )
     );
 }
 
