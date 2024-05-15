@@ -5,9 +5,10 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 
 function Navbar() {
-    const { user } = useAuth0();
+    const { user, getIdTokenClaims } = useAuth0();
     if (user) {
-        console.log(user);
+        let claims = getIdTokenClaims();
+        console.log(user["http://www.u2.com/roles"]);
     }
 
     return (
