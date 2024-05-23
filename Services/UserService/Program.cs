@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using UserService.Models;
 using UserService.Services.Interfaces;
 
@@ -14,15 +16,29 @@ builder.Services.AddDbContext<AppDbContext>();
 
 builder.Services.AddScoped<IUserService, UserService.Services.UserService>();
 
+var connectionString = builder.Configuration.GetConnectionString("UserDatabase");
+
+builder.Services.AddDbContextPool<AppDbContext>(options =>
+{
+    options.UseMySQL(
+        connectionString!
+        );
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+using (var scope = app.Services.CreateScope())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    context.Database.EnsureCreated();
 }
+
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
 
 
 app.UseAuthorization();
