@@ -16,15 +16,6 @@ builder.Services.AddDbContext<AppDbContext>();
 
 builder.Services.AddScoped<IUserService, UserService.Services.UserService>();
 
-var connectionString = builder.Configuration.GetConnectionString("UserDatabase");
-
-builder.Services.AddDbContextPool<AppDbContext>(options =>
-{
-    options.UseMySQL(
-        connectionString!
-        );
-});
-
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
