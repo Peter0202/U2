@@ -28,10 +28,9 @@ namespace UserService.Controllers
 
         [HttpGet()]
         [ActionName("GetAllUsers")]
-        public string GetAll()
+        public IEnumerable<User> GetAll()
         {
-            /*return _userService.GetUsers();*/
-            return "hui";
+            return _userService.GetUsers();
         }
 
         [HttpPost()]
