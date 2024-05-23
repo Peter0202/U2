@@ -10,8 +10,8 @@ metadata:
   name: userservice
 spec:
   ports:
-    - name: "7000"
-      port: 7000
-      targetPort: 7000
+    - name: "8080"
+      port: 8080
+      targetPort: 8080
   selector:
     io.kompose.service: userservice
