@@ -16,12 +16,12 @@ jobs:
     strategy:
       matrix:
         include:
-          - dockerfile: ./Services/UserService/DockerFile
+          - dockerfile: ./Services/UserService/Dockerfile
             image: ghcr.io/Peter0202/U2-user-service
             working-directory: ./Services/UserService
             service-name: UserService
             
-          - dockerfile: ./Services/VideoService/DockerFile
+          - dockerfile: ./Services/VideoService/Dockerfile
             image: ghcr.io/Peter0202/U2-video-service
             working-directory: ./Services/VideoService
             service-name: VideoService
