@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection.PortableExecutable;
 using UserService.Models;
 using UserService.Services.Interfaces;
 
@@ -20,7 +21,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: allowSpecificOrigins, policy =>
     {
         policy.AllowAnyOrigin();
-        policy.AllowAnyHeader();
+    policy.AllowAnyHeader();
+        policy.WithHeaders("GET, POST, OPTIONS, PUT, DELETE");
     });
 });
 

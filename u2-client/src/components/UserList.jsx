@@ -1,20 +1,22 @@
 import User from "./User";
 import React from "react";
 
-function UserList (props) {
-    <table style={{border: "1px solid black"}}>
+function UserList(props) {
+    return (
+        <table style={{ border: "1px solid black" }}>
             <thead>
-                <tr style={{border: "1px solid black"}}>
+                <tr style={{ border: "1px solid black" }}>
                     <th>id</th>
-                    <th>username</th>                   
+                    <th>username</th>
                 </tr>
             </thead>
-            <tbody style={{border: "1px solid black"}}>
+            <tbody style={{ border: "1px solid black" }}>
                 {props.users.map(user => (
-                    <User key={user.id} user={user}/>
+                    <User key={user.id} user={user} />
                 ))}
             </tbody>
         </table>
+    )
 }
 
 export default UserList;

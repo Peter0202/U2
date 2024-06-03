@@ -6,6 +6,8 @@ import { getAllUsers } from "../api/userApi";
 import UserList from "./UserList";
 import { useState } from "react";
 import { useEffect } from "react";
+import { createUser } from "../api/userApi";
+import { deleteUser } from "../api/userApi";
 
 function Navbar() {
     const { user, getIdTokenClaims } = useAuth0();
@@ -17,25 +19,29 @@ function Navbar() {
     const [users, setUsers] = useState([]);
 
     const refreshUserList = () => {
-        getAllUsers().then(usersList => {setUsers(usersList);
+        getAllUsers().then(usersList => {
+            setUsers(usersList);
 
         }).catch(error => console.log(error));
-        console.log(users);
     }
+
+    
 
     useEffect(() => {
         refreshUserList();
-    }, []);
+    }, [users]);
 
     return (
         <div>
             <AppBar position="static" sx={{ bgcolor: '#222222' }}>
                 <LoginButton />
                 <LogoutButton />
-                <div className="inner">
-                    <UserList users = {Array(users)}/>
-                </div>
             </AppBar>
+
+            <div className="inner">
+                <UserList users={users} />
+            </div>
+
         </div>
     );
 }
