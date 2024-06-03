@@ -1,10 +1,12 @@
 import Navbar from '../components/Navbar';
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 const Root = () => {
+
+  const role = localStorage.getItem("roles");
   return (
   <div>
-  <Navbar />
-  <Outlet />
+    <Navbar />
+    <Outlet />
   </div>
   );
 }
