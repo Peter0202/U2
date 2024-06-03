@@ -4,7 +4,7 @@ using UserService.Models;
 using UserService.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
-
+const string allowSpecificOrigins = "dev";
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -15,6 +15,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>();
 
 builder.Services.AddScoped<IUserService, UserService.Services.UserService>();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: allowSpecificOrigins, policy =>
+    {
+        policy.AllowAnyOrigin();
+        policy.AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
 
@@ -38,6 +46,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseRouting();
+app.UseCors(allowSpecificOrigins);
 
 app.UseAuthorization();
 
