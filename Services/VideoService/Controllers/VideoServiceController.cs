@@ -25,7 +25,6 @@ namespace U2.Controllers
         public IEnumerable<Video> GetAllVideos()
         {
             List<Video> videos = _videoService.GetVideos().ToList();
-            _videoService.AddVideo(testVid);
             return _videoService.GetVideos();
    
         }
