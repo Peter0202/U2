@@ -27,6 +27,9 @@ namespace U2.Controllers
             List<Video> videos = _videoService.GetVideos().ToList();
             var stringId = videos.First().Id.ToString();
             Console.WriteLine(stringId);
+            Video testVid = new Video();
+            testVid.Title = "testMongo";
+            _videoService.AddVideo(testVid);
             return _videoService.GetVideos();
    
         }
