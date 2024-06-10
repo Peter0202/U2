@@ -16,3 +16,22 @@ spec:
         - path:
             type: PathPrefix
             value: /
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: videoservice
+spec:
+  parentRefs:
+    - name: eg
+  rules:
+    - backendRefs:
+        - group: ""
+          kind: Service
+          name: videoservice
+          port: 8080
+          weight: 1
+      matches:
+        - path:
+            type: PathPrefix
+            value: /

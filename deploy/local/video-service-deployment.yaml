@@ -6,13 +6,13 @@ metadata:
     kompose.image-pull-policy: Always
     kompose.version: 1.32.0 (765fde254)
   labels:
-    io.kompose.service: userservice
-  name: userservice
+    io.kompose.service: videoservice
+  name: videoservice
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: userservice
+      io.kompose.service: videoservice
   template:
     metadata:
       annotations:
@@ -21,12 +21,12 @@ spec:
         kompose.version: 1.32.0 (765fde254)
       labels:
         io.kompose.network/mesher-default: "true"
-        io.kompose.service: userservice
+        io.kompose.service: videoservice
     spec:
       containers:
-        - image: ghcr.io/peter0202/u2-user-service:main
+        - image: ghcr.io/peter0202/u2-video-service:main
           imagePullPolicy: Always
-          name: userservice
+          name: videoservice
           args:
           - /bin/sh
           - -c
