@@ -9,7 +9,6 @@ const RequireAuth = ({allowedRoles}) =>{
         localStorage.setItem("roles", user["http://www.u2.com/roles"])
     }
     
-    
     const location = useLocation();
     let userRoles = localStorage.getItem("roles");
     console.log(allowedRoles?.includes(userRoles));

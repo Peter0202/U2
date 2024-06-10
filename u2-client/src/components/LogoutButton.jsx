@@ -7,7 +7,7 @@ const LogoutButton = () => {
 
     return (
         isAuthenticated && (
-            <Button variant="outlined" onClick={() => {
+            <Button variant="outlined" color = "primary" onClick={() => {
                 logout({ logoutParams: { returnTo: window.location.origin } });
                 window.localStorage.clear();
             }

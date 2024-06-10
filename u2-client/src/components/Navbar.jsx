@@ -10,13 +10,15 @@ function Navbar() {
         let claims = getIdTokenClaims();
         localStorage.setItem("roles", user["http://www.u2.com/roles"])
     }
+
+    
     const role = localStorage.getItem("roles");
     console.log(role);
     if (role === "Admin") {       
         return (
-            <div>
+            <div className = ".d-flex flex-row">
                 <Navigate to= "/admin"/>
-                <AppBar position="static" sx={{ bgcolor: '#222222' }}>
+                <AppBar position="static" sx={{ bgcolor: '#696969' }}>
                     <LoginButton />
                     <LogoutButton />
                     <p>Admin</p>
@@ -26,7 +28,7 @@ function Navbar() {
     }
     else if (role === "User") { 
         return (
-            <div>
+            <div className = ".d-flex flex-row">
                 <Navigate to= "/user"/>
                 <AppBar position="static" sx={{ bgcolor: '#222222' }}>
                     <LoginButton />
@@ -38,7 +40,7 @@ function Navbar() {
     }
     else {
         return (
-            <div>
+            <div className = ".d-flex flex-row">
                 <AppBar position="static" sx={{ bgcolor: '#222222' }}>
                     <LoginButton />
                     <LogoutButton />

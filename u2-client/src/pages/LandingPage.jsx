@@ -21,7 +21,9 @@ function LandingPage(){
     }, [])
     
 
-    return(<div></div>);
+    return(<div>
+        <h1>Welcome to U2</h1>
+    </div>);
 }
 
 export default LandingPage;
