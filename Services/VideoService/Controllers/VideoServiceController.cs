@@ -14,10 +14,13 @@ namespace U2.Controllers
        
         private readonly ILogger<VideoServiceController> _logger;
 
-        public VideoServiceController(ILogger<VideoServiceController> logger, IVideoService videoService)
+        private readonly ISender _rabbitMqSender;
+
+        public VideoServiceController(ILogger<VideoServiceController> logger, IVideoService videoService, ISender rabbitMqSender)
         {
             _logger = logger;  
             _videoService = videoService;
+            _rabbitMqSender = rabbitMqSender;
         }
 
         [HttpGet()]
@@ -54,6 +57,8 @@ namespace U2.Controllers
                 Title = title
             };
             _videoService.AddVideo(newVideo);
+
+            _rabbitMqSender.Send(newVideo);
         }
 
         [HttpDelete()]

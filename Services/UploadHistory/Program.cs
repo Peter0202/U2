@@ -1,4 +1,5 @@
 using UploadHistory.Models;
+using UploadHistory.RabbitMQ;
 var builder = WebApplication.CreateBuilder(args);
 const string allowSpecificOrigins = "dev";
 
@@ -46,5 +47,8 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+
+var consumer = new Consumer();
+consumer.Consume();
 
 app.Run();
