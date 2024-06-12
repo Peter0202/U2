@@ -25,6 +25,11 @@ jobs:
             image: ghcr.io/Peter0202/U2-video-service
             working-directory: ./Services/VideoService
             service-name: VideoService
+
+          - dockerfile: ./Services/UploadHistory/Dockerfile
+            image: ghcr.io/Peter0202/U2-upload-service
+            working-directory: ./Services/UploadHistory
+            service-name: UploadHistory
             
     name: Build and push container ${{matrix.service-name}}
     permissions: 
