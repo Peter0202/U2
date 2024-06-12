@@ -34,10 +34,13 @@ namespace U2.Controllers
 
         [HttpGet()]
         [ActionName("GetVideo")]
-        [Route("{title}")]
-        public Video? GetVideo(string title)
+        public Video? GetVideo([FromQuery] string? title)
         {
-            return _videoService.GetByTitle(title);
+            if (title == String.Empty)
+            {
+                return null;
+            }
+            return _videoService.GetByTitle(title!);
         }
 
         [HttpGet()]
@@ -49,8 +52,7 @@ namespace U2.Controllers
         }
 
         [HttpPost()]
-        [Route("{title}")]
-        public void Post(string title)
+        public void Post([FromQuery] string? title)
         {
             Video newVideo = new Video()
             {
