@@ -8,10 +8,12 @@ EXPOSE 8080
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Services/UploadHistory/UploadHistory.csproj", "Services/UploadHistory/"]
-RUN dotnet restore "./Services/UploadHistory/UploadHistory.csproj"
-COPY . .
+COPY UploadHistory.csproj UploadHistory/
+RUN dotnet restore "UploadHistory/UploadHistory.csproj"
+
 WORKDIR "/src/Services/UploadHistory"
+COPY . .
+
 RUN dotnet build "./UploadHistory.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
