@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f ../deploy.yaml
+    kompose.image-pull-policy: Always
+    kompose.version: 1.32.0 (765fde254)
+  labels:
+    io.kompose.service: uploadservice
+  name: uploadservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: uploadservice
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f ../deploy.yaml
+        kompose.image-pull-policy: Always
+        kompose.version: 1.32.0 (765fde254)
+      labels:
+        io.kompose.network/mesher-default: "true"
+        io.kompose.service: uploadservice
+    spec:
+      containers:
+        - image: ghcr.io/peter0202/u2-upload-service:main
+          imagePullPolicy: Always
+          name: uploadservice
+          args:
+          - /bin/sh
+          - -c
+          - touch /tmp/healthy
+          ports:
+            - name: liveness-port
+              containerPort: 8080
+          resources:
+            requests:
+              cpu: 150m
+            limits:
+              cpu: 150m
+      restartPolicy: Always

@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserService", "Services\Use
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VideoService", "Services\VideoService\VideoService.csproj", "{2464D3B6-8786-4CC5-AA25-DA44B970970E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UploadHistory", "Services\UploadHistory\UploadHistory.csproj", "{83C4C543-A3E6-4837-B208-D754B34DC200}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{2464D3B6-8786-4CC5-AA25-DA44B970970E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2464D3B6-8786-4CC5-AA25-DA44B970970E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2464D3B6-8786-4CC5-AA25-DA44B970970E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83C4C543-A3E6-4837-B208-D754B34DC200}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83C4C543-A3E6-4837-B208-D754B34DC200}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83C4C543-A3E6-4837-B208-D754B34DC200}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83C4C543-A3E6-4837-B208-D754B34DC200}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

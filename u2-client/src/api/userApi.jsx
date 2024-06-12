@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = 'http://localhost:80/api/UserService/GetAllUsers'
+const url = 'http://51.8.195.62/api/UserService/GetAllUsers'
 
 export const getAllUsers = async () => {
     try {
