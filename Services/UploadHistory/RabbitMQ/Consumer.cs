@@ -33,7 +33,7 @@ namespace UploadHistory.RabbitMQ
                 var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
                 var deserialized = Newtonsoft.Json.JsonConvert.DeserializeObject<Video>(message);
-                Console.WriteLine($" [x] Received {deserialized?.Id}");
+                Console.WriteLine($" [x] Received {deserialized?.Title}");
             };
             _channel.BasicConsume(queue: "hello",
                 autoAck: true,

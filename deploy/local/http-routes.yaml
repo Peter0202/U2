@@ -34,7 +34,7 @@ spec:
       matches:
         - path:
             type: PathPrefix
-            value: /
+            value: /api/VideoService/Post
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
