@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-const url = 'http://localhost:80/api/UserService/GetAllUsers'
-
+const url = 'http://localhost:80/api/UserService/GetAllUsers';
+const BASE_URL = 'http://localhost:80/api/UserService';
 export const getAllUsers = async () => {
     try {
-        const res = (await axios.get(url)).data;
+        const res = (await axios.get(BASE_URL + `/GetAllUsers`)).data;
         return res;
     }
     catch(err){
@@ -14,7 +14,7 @@ export const getAllUsers = async () => {
 
 export const createUser = async (username) =>{
     try{
-        return (await axios.post(`http://localhost:80/api/UserService/Post/${username}`));
+        return (await axios.post(BASE_URL + `/Post/?username=${username}`));
     }
     catch(err){
         console.log(err);
@@ -23,7 +23,7 @@ export const createUser = async (username) =>{
 
 export const deleteUser = async (id) => {
     try{
-        return (await axios.delete(`http://localhost:80/api/UserService/Delete/${id}`));
+        return (await axios.delete(BASE_URL + `/Delete/?id=${id}`));
     }
     catch(err){
         console.log(err);
