@@ -26,8 +26,6 @@ namespace U2.Controllers
 
         [HttpGet()]
         [ActionName("GetAllVideos")]
-        [Authorize(Roles = "User")]
-        [Authorize(Roles = "Admin")]
         public IEnumerable<Video> GetAllVideos()
         {
             List<Video> videos = _videoService.GetVideos().ToList();
