@@ -6,6 +6,12 @@ using VideoService.Services.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 var allowSpecificOrigins = "dev";
 
+
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: allowSpecificOrigins,
@@ -16,10 +22,6 @@ builder.Services.AddCors(options =>
             policy.AllowAnyMethod();
         });
 });
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 //MongoDb settings setup
 var mongoDbSettings = builder.Configuration.GetSection("MongoDbSettings").Get<MongoDbSettings>();
