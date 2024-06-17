@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-const url = 'http://localhost:80/api/UserService/GetAllUsers';
 const BASE_URL = 'http://localhost:80/api/UserService';
 export const getAllUsers = async () => {
     try {
