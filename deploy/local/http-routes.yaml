@@ -15,7 +15,19 @@ spec:
       matches:
         - path:
             type: PathPrefix
-            value: /
+            value: /api/UserService/GetAllUsers
+        - path:
+            type: PathPrefix
+            value: /api/UserService/GetUser
+        - path:
+            type: PathPrefix
+            value: /api/UserService/Post
+        - path:
+            type: PathPrefix
+            value: /api/UserService/Delete
+        - path:
+            type: PathPrefix
+            value: /api/UserService/Put
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -35,6 +47,21 @@ spec:
         - path:
             type: PathPrefix
             value: /api/VideoService/Post
+        - path:
+            type: PathPrefix
+            value: /api/VideoService/GetAllVideos
+        - path:
+            type: PathPrefix
+            value: /api/VideoService/GetVideo
+        - path:
+            type: PathPrefix
+            value: /api/VideoService/GetVideoById
+        - path:
+            type: PathPrefix
+            value: /api/VideoService/Delete
+        - path:
+            type: PathPrefix
+            value: /api/VideoService/Put
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute

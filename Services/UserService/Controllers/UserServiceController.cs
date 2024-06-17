@@ -19,10 +19,9 @@ namespace UserService.Controllers
 
         [HttpGet()]
         [ActionName("GetUser")]
-        [Route("{id}")]
-        public User? GetUser(int id)
+        public User? GetUser([FromQuery]int? id)
         {
-            User? user = _userService.GetById(id);
+            User? user = _userService.GetById(id.GetValueOrDefault());
             return user;              
         }
 
@@ -34,19 +33,17 @@ namespace UserService.Controllers
         }
 
         [HttpPost()]
-        [Route("{username}")]
-        public void Post(string username)
+        public void Post([FromQuery]string? username)
         {
             User user = new User();
-            user.Username = username;
+            user.Username = username!;
             _userService.AddUser(user);
         }
 
         [HttpDelete()]
-        [Route("{id}")]
-        public void Delete(int id)
+        public void Delete([FromQuery]int? id)
         {
-            User? user = _userService.GetById(id);
+            User? user = _userService.GetById(id.GetValueOrDefault());
             if (user != null)
             {
                 _userService.DeleteUser(user);
@@ -54,10 +51,9 @@ namespace UserService.Controllers
         }
 
         [HttpPut()]
-        [Route("{id}")]
-        public void Put(int id) 
+        public void Put([FromQuery]int? id) 
         {
-            User? user = _userService.GetById(id);
+            User? user = _userService.GetById(id.GetValueOrDefault());
             if (user != null)
             {
                 _userService.UpdateUser(user);

@@ -45,10 +45,9 @@ namespace U2.Controllers
 
         [HttpGet()]
         [ActionName("GetVideoById")]
-        [Route("{id}")]
-        public Video? GetVideoById(string id)
+        public Video? GetVideoById([FromQuery]string? id)
         {
-            return _videoService.GetById(id);
+            return _videoService.GetById(id!);
         }
 
         [HttpPost()]
@@ -64,17 +63,15 @@ namespace U2.Controllers
         }
 
         [HttpDelete()]
-        [Route("{title}")]
-        public void Delete(string title)
+        public void Delete([FromQuery]string? title)
         {
-            _videoService.DeleteVideo(title);
+            _videoService.DeleteVideo(title!);
         }
 
         [HttpPut()]
-        [Route("{id}")]
-        public void Put(string id)
+        public void Put([FromQuery]string? id)
         {
-            Video? video = _videoService.GetById(id);
+            Video? video = _videoService.GetById(id!);
             if (video != null)
             {
                 _videoService.UpdateVideo(video);
