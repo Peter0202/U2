@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using UserService.Models;
+using VideoService.Models;
 using VideoService.RabbitMQ;
 using VideoService.Services;
 using VideoService.Services.Interfaces;
@@ -50,6 +51,7 @@ app.UseCors(allowSpecificOrigins);
 app.UseAuthorization();
 
 app.MapControllers();
+
 
 var consumer = new Consumer();
 consumer.Consume();

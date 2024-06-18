@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VideoService.Models;
 
-namespace UserService.Models
+namespace VideoService.Models
 {
     public class AppDbContext : DbContext
     {

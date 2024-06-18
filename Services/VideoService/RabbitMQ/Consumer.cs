@@ -11,11 +11,12 @@ namespace VideoService.RabbitMQ
     public class Consumer : IConsumer
     {
         private IModel? _channel;
-
-        private readonly IVideoService _videoService;
+        private AppDbContext _appDbContext;
+        private VideoService.Services.VideoService videoService;
 
         private void Configure()
         {
+            videoService = new VideoService.Services.VideoService(_appDbContext);
             var factory = new ConnectionFactory { HostName = "rabbitmq" };
             var connection = factory.CreateConnection();
             _channel = connection.CreateModel();
@@ -38,7 +39,7 @@ namespace VideoService.RabbitMQ
                 var message = Encoding.UTF8.GetString(body);
                 var deserialized = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(message);
                 Console.WriteLine($" [x] Received {deserialized?.Id}");
-                _videoService.DeleteVideosForUser(deserialized?.Id);
+                videoService.DeleteVideosForUser(deserialized?.Id);
             };
             _channel.BasicConsume(queue: "delete_user",
                 autoAck: true,
