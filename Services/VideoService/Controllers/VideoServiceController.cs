@@ -52,11 +52,12 @@ namespace U2.Controllers
         }
 
         [HttpPost()]
-        public void Post([FromQuery] string? title)
+        public void Post([FromQuery] string? title, [FromQuery] int? posterId)
         {
             Video newVideo = new Video()
             {
-                Title = title
+                Title = title,
+                PosterId = posterId
             };
             _videoService.AddVideo(newVideo);
 
