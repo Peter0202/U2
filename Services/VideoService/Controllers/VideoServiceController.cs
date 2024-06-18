@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using VideoService.Models;
+using VideoService.RabbitMQ;
 using VideoService.Services.Interfaces;
 
 namespace U2.Controllers

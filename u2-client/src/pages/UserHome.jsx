@@ -20,7 +20,7 @@ function UserHome() {
     const handleSubmit = async (e) =>{
         e.preventDefault();
         
-        await createVideo(title, 2).then(res => {
+        await createVideo(title, 3).then(res => {
             console.log(res);
         })
 

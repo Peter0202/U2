@@ -5,18 +5,16 @@ using System.Text;
 using VideoService.Models;
 using VideoService.Services;
 using U2.Controllers;
+using Microsoft.EntityFrameworkCore;
 
 namespace VideoService.RabbitMQ
 {
     public class Consumer : IConsumer
     {
         private IModel? _channel;
-        private AppDbContext _appDbContext;
-        private VideoService.Services.VideoService videoService;
-
+        private IVideoService? videoService;
         private void Configure()
         {
-            videoService = new VideoService.Services.VideoService(_appDbContext);
             var factory = new ConnectionFactory { HostName = "rabbitmq" };
             var connection = factory.CreateConnection();
             _channel = connection.CreateModel();
