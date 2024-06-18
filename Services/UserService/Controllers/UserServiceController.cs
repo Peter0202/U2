@@ -34,6 +34,14 @@ namespace UserService.Controllers
             return _userService.GetUsers();
         }
 
+        [HttpGet]
+        [ActionName("GetByUsername")]
+        public User? GetByUsername ([FromQuery] string? username)
+        {
+            User? user = _userService.GetByUsername(username!);
+            return user;
+        }
+
         [HttpPost()]
         public void Post([FromQuery]string? username)
         {

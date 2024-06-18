@@ -35,6 +35,12 @@ namespace UserService.Services
             return _appDbContext.User.ToList();
         }
 
+        public User? GetByUsername(string username)
+        {
+            User? user = _appDbContext.User.FirstOrDefault(x => x.Username == username);
+            return user;
+        }
+
         public void UpdateUser(User user)
         {
             _appDbContext.User.Update(user);
