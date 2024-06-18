@@ -50,4 +50,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+var consumer = new Consumer();
+consumer.Consume();
+
 app.Run();

@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection.PortableExecutable;
 using UserService.Models;
+using UserService.RabbitMQ;
 using UserService.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +26,9 @@ builder.Services.AddCors(options =>
         policy.AllowAnyMethod();
     });
 });
+
+
+builder.Services.AddSingleton<ISender, ProducerService>();
 
 var app = builder.Build();
 
