@@ -10,11 +10,13 @@ namespace UserService.Controllers
     {
         private readonly IUserService _userService;
         private readonly ILogger<UserServiceController> _logger;
+        private readonly ISender _rabbitMqSender;
 
-        public UserServiceController(ILogger<UserServiceController> logger, IUserService userService)
+        public UserServiceController(ILogger<UserServiceController> logger, IUserService userService, ISender rabbitMqSender)
         {
             _logger = logger;
             _userService = userService;
+            _rabbitMqSender = rabbitMqSender;
         }
 
         [HttpGet()]
@@ -47,6 +49,7 @@ namespace UserService.Controllers
             if (user != null)
             {
                 _userService.DeleteUser(user);
+                _rabbitMqSender.Send(user);
             }
         }
 
