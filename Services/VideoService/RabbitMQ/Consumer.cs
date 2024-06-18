@@ -6,13 +6,14 @@ using VideoService.Models;
 using VideoService.Services;
 using U2.Controllers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace VideoService.RabbitMQ
 {
     public class Consumer : IConsumer
     {
         private IModel? _channel;
-        private IVideoService? videoService;
+        private IVideoService _videoService;
         private void Configure()
         {
             var factory = new ConnectionFactory { HostName = "rabbitmq" };
@@ -37,7 +38,7 @@ namespace VideoService.RabbitMQ
                 var message = Encoding.UTF8.GetString(body);
                 var deserialized = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(message);
                 Console.WriteLine($" [x] Received {deserialized?.Id}");
-                videoService.DeleteVideosForUser(deserialized?.Id);
+                _videoService.DeleteVideosForUser(deserialized?.Id);
             };
             _channel.BasicConsume(queue: "delete_user",
                 autoAck: true,
@@ -46,8 +47,9 @@ namespace VideoService.RabbitMQ
         /// <summary>
         /// C`tor.
         /// </summary>
-        public Consumer()
+        public Consumer(IVideoService videoService)
         {
+            _videoService = videoService;
             Configure();
         }
     }

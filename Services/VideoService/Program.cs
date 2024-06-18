@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using UserService.Models;
 using VideoService.Models;
 using VideoService.RabbitMQ;
@@ -52,8 +53,11 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+optionsBuilder.UseMongoDB(mongoDbSettings.AtlasURI ?? "", mongoDbSettings.DatabaseName ?? "");
+var _context = new AppDbContext(optionsBuilder.Options);
 
-var consumer = new Consumer();
+var consumer = new Consumer(new VideoService.Services.VideoService(_context));
 consumer.Consume();
 
 app.Run();
