@@ -7,8 +7,6 @@ import { useEffect } from "react";
 import { deleteUser } from "../api/userApi";
 
 function AdminHome() {
-
-
     const [users, setUsers] = useState([]);
 
     const refreshUserList = () => {

@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Root from './routes/Route.jsx'
 import { Auth0Provider, useAuth0 } from '@auth0/auth0-react'
 import AdminHome from './pages/AdminHome.jsx';
-import RequireAuth from './pages/RequireAuth.jsx';
 import Unauthorized from './pages/Unauthorized.jsx';
 import LandingPage from './pages/LandingPage.jsx';
 import UserHome from './pages/UserHome.jsx';
