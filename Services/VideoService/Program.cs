@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using UserService.Models;
 using VideoService.RabbitMQ;
+using VideoService.Services;
 using VideoService.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,7 +35,7 @@ builder.Services.AddSingleton<ISender, ProducerService>();
 
 
 
-builder.Services.AddScoped<IVideoService, VideoService.Services.VideoService >();
+builder.Services.AddScoped<IVideoService, VideoService.Services.VideoService>();
 
 var app = builder.Build();
 

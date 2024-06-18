@@ -44,6 +44,20 @@ namespace VideoService.Services
             _context.SaveChanges();
         }
 
+        public void DeleteVideosForUser(int? posterId)
+        {
+            if (posterId != null)
+            {
+                var videosForUser = GetVideos().Where(x => x.PosterId == posterId);
+                foreach (var video in videosForUser)
+                {
+                    _context.Video.Remove(video);
+                }
+                _context.ChangeTracker.DetectChanges();
+                _context.SaveChanges();
+            }
+        }
+
 
         public void UpdateVideo(Video video)
         {

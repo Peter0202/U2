@@ -12,9 +12,9 @@ export const getAllVideos = async () =>{
     }
 }
 
-export const createVideo = async (title) => {
+export const createVideo = async (title, posterId) => {
     try{
-        return (await axios.post(BASE_URL + `/Post?title=${title}`))
+        return (await axios.post(BASE_URL + `/Post?title=${title}&posterId=${posterId}`))
     }
     catch(err){
         console.log(err);

@@ -3,12 +3,17 @@ using RabbitMQ.Client;
 using VideoService.Services.Interfaces;
 using System.Text;
 using VideoService.Models;
+using VideoService.Services;
+using U2.Controllers;
 
 namespace VideoService.RabbitMQ
 {
     public class Consumer : IConsumer
     {
         private IModel? _channel;
+
+        private readonly IVideoService _videoService;
+
         private void Configure()
         {
             var factory = new ConnectionFactory { HostName = "rabbitmq" };
@@ -29,11 +34,11 @@ namespace VideoService.RabbitMQ
             var consumer = new EventingBasicConsumer(_channel);
             consumer.Received += (model, ea) =>
             {
-
                 var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
                 var deserialized = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(message);
                 Console.WriteLine($" [x] Received {deserialized?.Id}");
+                _videoService.DeleteVideosForUser(deserialized?.Id);
             };
             _channel.BasicConsume(queue: "delete_user",
                 autoAck: true,

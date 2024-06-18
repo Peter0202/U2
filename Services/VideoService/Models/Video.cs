@@ -12,6 +12,7 @@ namespace VideoService.Models
         public ObjectId Id { get; set; }
         [Required]
         public string? Title { get; set; }
+        [Required]
         public int? PosterId { get; set; }
 
     }
