@@ -20,3 +20,12 @@ export const createVideo = async (title, posterId) => {
         console.log(err);
     }
 }
+
+export const getVideosForUser = async (id) =>{
+    try{
+        return (await axios.get(BASE_URL + `/GetVideosForUser?id=${id}`)).data;
+    }
+    catch(err){
+        console.log(err);
+    }
+}

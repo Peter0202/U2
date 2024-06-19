@@ -23,7 +23,8 @@ namespace VideoService.Services
 
         public IEnumerable<Video> GetVideosForUser(int id)
         {
-            return _context.Video.Where(x => x.PosterId == id);
+
+            return GetVideos().Where(x => x.PosterId == id);
         }
 
         public Video? GetByTitle(string title)
