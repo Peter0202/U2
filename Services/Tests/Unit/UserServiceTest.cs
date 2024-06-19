@@ -6,17 +6,20 @@ namespace Unit
 {
     public class Tests
     {
-        private UserService.Services.UserService? _mockUserService;
+
         [SetUp]
         public void Setup()
         {
-            _mockUserService = new UserService.Services.UserService(null);
+            
         }
 
         [Test]
-        public void Test1()
+        [TestCase(25000)]
+        [TestCase(50000)]
+        [TestCase(-10023)]
+        public void TestNumberIsNotZero(int number)
         {
-            Assert.That(1, Is.Not.Zero);
+            Assert.That(number, Is.Not.Zero);
         }
     }
 }
