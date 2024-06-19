@@ -24,7 +24,7 @@ function UserHome() {
     }, [videos]);
 
     return (
-        <div>
+        <div style={{display:"flex", alignItems: "center", flexDirection: "column"}}>
             <h1>Users Page</h1>
             <div className="inner">
                 <VideoList videos={videos} />               

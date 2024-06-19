@@ -1,19 +1,27 @@
-import { useState } from "react";
-import { getAllVideos } from "../api/videoApi";
+import { useEffect, useState } from "react";
+import { getVideosForUser } from "../api/videoApi";
+import VideoList from "../components/VideoList";
 
 function UserVideos() {
 
     const [videos, setVideos] = useState([]);
-
-    const refreshVideoList = async () => {
-        await getAllVideos().then(allVideos =>{
-            
+    const userId = localStorage.getItem("Id");
+    const refreshVideoList =  () => {
+         getVideosForUser(userId).then(videoList => {
+            setVideos(videoList);
         });
     }
 
+    useEffect(() => {
+        refreshVideoList();
+    }, [videos])
+
     return (
         <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
-            <h2>My Videos</h2>
+            <h1>My Videos</h1>
+            <div className="inner">
+                <VideoList videos={videos} />               
+            </div>
         </div>
     )
 }
