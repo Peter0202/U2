@@ -11,7 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
-
+#certificates
+u2.com.crt
+u2.com.key
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
