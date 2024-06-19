@@ -12,5 +12,6 @@ namespace VideoService.Services.Interfaces
         void DeleteVideo(string title);
         Video? GetById(string id);
         void DeleteVideosForUser(int? posterId);
+        IEnumerable<Video> GetVideosForUser(int id);
     }
 }

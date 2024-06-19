@@ -35,6 +35,13 @@ namespace U2.Controllers
         }
 
         [HttpGet()]
+        [ActionName("GetVideosForUser")]
+        public IEnumerable<Video> GetVideosForUser([FromQuery] int? id)
+        {
+            return _videoService.GetVideosForUser(id.GetValueOrDefault());
+        }
+
+        [HttpGet()]
         [ActionName("GetVideo")]
         public Video? GetVideo([FromQuery] string? title)
         {

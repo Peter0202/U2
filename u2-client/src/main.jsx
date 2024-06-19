@@ -10,6 +10,9 @@ import Unauthorized from './pages/Unauthorized.jsx';
 import LandingPage from './pages/LandingPage.jsx';
 import UserHome from './pages/UserHome.jsx';
 import PrivateRoute from './components/PrivateRoute.jsx';
+import UploadPage from './pages/UploadPage.jsx';
+import UserProfile from './pages/UserProfile.jsx';
+import UserVideos from './pages/UserVideos.jsx';
 
 const domain = import.meta.env.VITE_AUTH0_DOMAIN;
 const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
@@ -51,6 +54,18 @@ const router = createBrowserRouter([
       {
         path: "/unauthorized",
         element: <Unauthorized/>
+      },
+      {
+        path: "/upload",
+        element: wrapPrivateRoute(<UploadPage/> , ["User"])
+      },
+      {
+        path: "/profile",
+        element: wrapPrivateRoute(<UserProfile/> , ["User"])
+      },
+      {
+        path: "/videos",
+        element: wrapPrivateRoute(<UserVideos/> , ["User"])
       }
     ]
   }

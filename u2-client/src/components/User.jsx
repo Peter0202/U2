@@ -1,11 +1,12 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { deleteUser } from "../api/userApi";
 import { Button } from "react-bootstrap";
 
 function User (props){
-
     const handleSubmit = () =>{
         deleteUser(props.user.id);
     }
+    
     return (
         <tr style={{border: "1px solid black"}}>
             <td><b>{props.user.id}</b></td>

@@ -1,10 +1,19 @@
 import axios from 'axios'
 
-const BASE_URL = 'http://localhost:80/api/UserService';
+const BASE_URL = 'http://51.8.195.62/api/UserService';
 export const getAllUsers = async () => {
     try {
         const res = (await axios.get(BASE_URL + `/GetAllUsers`)).data;
         return res;
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
+export const getUserByUsername = async (username) => {
+    try{
+        return (await axios.get(BASE_URL + `/GetByUsername/?username=${username}`)).data;
     }
     catch(err){
         console.log(err);

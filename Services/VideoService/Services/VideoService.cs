@@ -21,6 +21,11 @@ namespace VideoService.Services
             return _context.Video.AsNoTracking().AsEnumerable();
         }
 
+        public IEnumerable<Video> GetVideosForUser(int id)
+        {
+            return _context.Video.Where(x => x.PosterId == id);
+        }
+
         public Video? GetByTitle(string title)
         {
             return _context.Video.FirstOrDefault(x => x.Title == title);
