@@ -10,8 +10,8 @@ export default defineConfig({
       strictPort: true,
       port: 3000,
       https: {
-        key: fs.readFileSync(path.resolve(__dirname, '../deploy/u2.com.key')),
-        cert: fs.readFileSync(path.resolve(__dirname, '../deploy/u2.com.crt'))
+        key: fs.readFileSync(path.resolve(__dirname, '../deploy/www.u2.com.key')),
+        cert: fs.readFileSync(path.resolve(__dirname, '../deploy/www.u2.com.crt'))
       }
  }
 });

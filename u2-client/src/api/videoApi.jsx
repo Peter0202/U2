@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = 'http://51.8.195.62/api/VideoService';
+const BASE_URL = 'https://51.8.216.165/api/VideoService';
 
 export const getAllVideos = async () =>{
     try{

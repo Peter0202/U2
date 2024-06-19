@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'http://51.8.195.62/api/UserService';
+const BASE_URL = 'https://51.8.216.165/api/UserService';
 export const getAllUsers = async () => {
     try {
         const res = (await axios.get(BASE_URL + `/GetAllUsers`)).data;
