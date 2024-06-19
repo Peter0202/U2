@@ -1,0 +1,47 @@
+name: "Test"
+
+on:
+  push:
+    branches: ['main']
+    
+env:
+  CODACY_API_TOKEN: ${{secrets.CODACY_API_TOKEN}}
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    strategy:
+        matrix:
+            include:
+            - test-type: Unit
+              script: ./run-unit.sh
+              output-file: ./Services/Tests/Unit/coverage.xml
+    name: Run Tests (${{matrix.test-type}})
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Test Suite
+        run: |
+          sudo apt-get update && \
+          sudo apt-get install -y dotnet-sdk-8.0
+          export CODACY_PROJECT_TOKEN=$CODACY_API_TOKEN
+          bash ${{matrix.script}}
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage-report
+          path: ${{matrix.output-file}}
+
+      - name: Download a single artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: code-coverage-report
+      - run: ls
+
+      - name: Upload code coverage results
+        run: |
+          export CODACY_PROJECT_TOKEN=$CODACY_API_TOKEN
+          bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage.xml
+    
