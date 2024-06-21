@@ -1,10 +1,10 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from "vite";
 import fs from 'fs';
 import path from 'path';
-import react from '@vitejs/plugin-react'
+import react from "@vitejs/plugin-react";
 
-// https://vitejs.dev/config/
 export default defineConfig({
+<<<<<<< HEAD
   plugins: [react()],
   server: {
     host: true,
@@ -16,3 +16,12 @@ export default defineConfig({
     }
   }
 })
+=======
+    plugins: [react()],
+    server: {
+      host: true,
+      strictPort: true,
+      port: 3000
+ }
+});
+>>>>>>> parent of edc6eb6 (Test https certificates)
