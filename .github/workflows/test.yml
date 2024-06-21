@@ -39,7 +39,11 @@ jobs:
         with:
           name: code-coverage-report
       - run: ls
-
+      
+      - name: Upload code coverage results
+        run: |
+          export CODACY_PROJECT_TOKEN=$CODACY_API_TOKEN
+          bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r coverage.xml
       
           
           
