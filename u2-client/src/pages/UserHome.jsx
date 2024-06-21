@@ -17,7 +17,6 @@ function UserHome() {
         }).catch(error => console.log(error));
     }
 
-    
 
     useEffect(() => {
         refreshVideoList();
