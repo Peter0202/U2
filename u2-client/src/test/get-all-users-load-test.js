@@ -11,11 +11,11 @@ export const options = {
 
       executor: 'ramping-vus',
 
-      startVUs: 0,
+      startVUs: 130,
 
       stages: [
 
-        { duration: '60s', target: 100 },
+        { duration: '60s', target: 150 },
 
         { duration: '30s', target: 0 },
 
@@ -32,6 +32,6 @@ export const options = {
 
 export default function () {
 
-  http.get('http://localhost:80/api/UserService/GetAllUsers');
+  http.get('http://localhost:80/api/VideoService/GetAllVideos');
   sleep(1);
 }
