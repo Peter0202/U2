@@ -11,8 +11,8 @@ export default defineConfig({
     strictPort: true,
     port: 3000,
     https: {
-      key: fs.readFileSync(path.resolve(__dirname, '../deploy/local/www.example.com.key')),
-      cert: fs.readFileSync(path.resolve(__dirname, '../deploy/local/www.example.com.crt'))
+      key: fs.readFileSync(path.resolve(__dirname, '../deploy/local/u2.key')),
+      cert: fs.readFileSync(path.resolve(__dirname, '../deploy/local/u2.crt'))
     }
   }
 })
