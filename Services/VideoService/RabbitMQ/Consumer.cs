@@ -39,6 +39,7 @@ namespace VideoService.RabbitMQ
                 var deserialized = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(message);
                 Console.WriteLine($" [x] Received {deserialized?.Id}");
                 _videoService.DeleteVideosForUser(deserialized?.Id);
+                Console.Write($" [x] Deleted videos for user: {deserialized?.Username}");
             };
             _channel.BasicConsume(queue: "delete_user",
                 autoAck: true,
