@@ -2,8 +2,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using System.Reflection.PortableExecutable;
 using System.Security.Claims;
+using System.Text;
 using UserService.Models;
 using UserService.RabbitMQ;
 using UserService.Services.Interfaces;
@@ -25,6 +27,9 @@ builder.Services.AddAuthentication(options =>
     options.IncludeErrorDetails = true;
     options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
     {
+        ValidIssuer = "https://dev-mmxpntzef0pvzjib.us.auth0.com",
+        ValidAudience = "http://default-user-role-api",
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("pSfgCnXu9uoTObKzK2muN9ZwsObuv7T4")),
         NameClaimType = ClaimTypes.NameIdentifier
     };
 });
