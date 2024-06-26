@@ -21,23 +21,14 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
-    options.Authority = "https://dev-mmxpntzef0pvzjib.us.auth0.com";
-    options.Audience = "http://default-user-role-api";
-    options.RequireHttpsMetadata = false;
-    options.IncludeErrorDetails = true;
     options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
     {
         ValidIssuer = "https://dev-mmxpntzef0pvzjib.us.auth0.com",
         ValidAudience = "http://default-user-role-api",
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("pSfgCnXu9uoTObKzK2muN9ZwsObuv7T4")),
-        NameClaimType = ClaimTypes.NameIdentifier
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("pSfgCnXu9uoTObKzK2muN9ZwsObuv7T4"))
     };
 });
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("Admin", policy => policy.Requirements.Add(new HasScopeRequirement("Admin", "dev-mmxpntzef0pvzjib.us.auth0.com")));
-});
 
 builder.Services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
 
