@@ -6,7 +6,7 @@ const BASE_URL = 'http://48.217.13.145/api/UserService';
 
 export const getAllUsers = async () => {
     try {
-        const res = (await axios.get(BASE_URL + `/GetAllUsers`, {headers: {Authorization: `Bearer ${token}`}})).data;
+        const res = (await axios.get(BASE_URL + `/GetAllUsers`)).data;
         return res;
     }
     catch (err) {
