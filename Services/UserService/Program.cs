@@ -27,7 +27,7 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
-    options.Authority = "https://dev-mmxpntzef0pvzjib.us.auth0.com";
+    options.Authority = "https://dev-mmxpntzef0pvzjib.us.auth0.com/";
     options.Audience = "http://default-user-role-api";
     options.TokenValidationParameters = new TokenValidationParameters
     {
@@ -35,8 +35,8 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = $"https://dev-mmxpntzef0pvzjib.us.auth0.com",
-        ValidAudience = "http://default-user-role-api"
+        ValidIssuer = $"https://dev-mmxpntzef0pvzjib.us.auth0.com/",
+        ValidAudiences = new[] { "http://default-user-role-api", "https://dev-mmxpntzef0pvzjib.us.auth0.com/userinfo" }, 
     };
 
     options.Events = new JwtBearerEvents
