@@ -30,6 +30,7 @@ namespace UserService.Controllers
 
         [HttpGet()]
         [ActionName("GetAllUsers")]
+        [Authorize]
         public IEnumerable<User> GetAll()
         {
             return _userService.GetUsers();

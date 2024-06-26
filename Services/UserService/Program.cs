@@ -14,9 +14,12 @@ using static System.Net.WebRequestMethods;
 
 var builder = WebApplication.CreateBuilder(args);
 const string allowSpecificOrigins = "dev";
-// Add services to the container.
 
 
+
+builder.Services.AddControllers();
+
+// Add authentication services
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -24,23 +27,20 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
-    List<string> validAudiences =
-    [
-        "http://default-user-role-api",
-        "https://dev-mmxpntzef0pvzjib.us.auth0.com/userinfo",
-    ];
-    options.Authority = "https://dev-mmxpntzef0pvzjib.us.auth0.com/userinfo";
+    options.Authority = "https://dev-mmxpntzef0pvzjib.us.auth0.com";
     options.Audience = "http://default-user-role-api";
-
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        NameClaimType = ClaimTypes.NameIdentifier
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = $"https://dev-mmxpntzef0pvzjib.us.auth0.com",
+        ValidAudience = "http://default-user-role-api"
     };
 });
 
-
-
-builder.Services.AddControllers();
+builder.Services.AddAuthorization();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
