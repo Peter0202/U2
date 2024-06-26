@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
 
-    const { user, getIdTokenClaims } = useAuth0();
+    const { user, getIdTokenClaims, getAccessTokenSilently } = useAuth0();
     console.log(user);
     if (user) {
         let claims = getIdTokenClaims();
@@ -19,6 +19,8 @@ function Navbar() {
 
     const newUser = localStorage.getItem("newUser");
     const role = localStorage.getItem("roles");
+    const token = getAccessTokenSilently();
+    console.log(token);
     console.log(role);
     console.log(localStorage.getItem("newUser"));
 

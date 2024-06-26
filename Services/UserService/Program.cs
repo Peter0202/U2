@@ -17,14 +17,15 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
-        options.Authority = "dev-mmxpntzef0pvzjib.us.auth0.com";
-        options.Audience = "http://default-user-role-api";
-        options.RequireHttpsMetadata = false;
-        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-        {
-            NameClaimType = "name",
-            RoleClaimType = "https://schemas.quickstarts.com/roles",
-        };
+    options.Authority = "dev-mmxpntzef0pvzjib.us.auth0.com";
+    options.Audience = "http://default-user-role-api";
+    options.RequireHttpsMetadata = false;
+    options.IncludeErrorDetails = true;
+    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
+        NameClaimType = "name",
+        RoleClaimType = "https://schemas.quickstarts.com/roles",
+    };
 });
 
 builder.Services.AddAuthorization(options =>
