@@ -58,7 +58,8 @@ jobs:
           oas-url: "http://48.217.13.145/api/UserService/GetAllUsers"
           # The email address to which the penetration test report will be sent.
           email: "bakalov.peter@gmail.com"
-          sarif-result-file: "ethicalcheck-results.sarif"
+          output: ethicalcheck-results.sarif
+          format: sarif
 
        - name: Upload sarif file to repository
          uses: github/codeql-action/upload-sarif@v2
