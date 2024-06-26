@@ -38,6 +38,20 @@ builder.Services.AddAuthentication(options =>
         ValidIssuer = $"https://dev-mmxpntzef0pvzjib.us.auth0.com",
         ValidAudience = "http://default-user-role-api"
     };
+
+    options.Events = new JwtBearerEvents
+    {
+        OnAuthenticationFailed = context =>
+        {
+            Console.WriteLine("OnAuthenticationFailed: " + context.Exception.Message);
+            return Task.CompletedTask;
+        },
+        OnTokenValidated = context =>
+        {
+            Console.WriteLine("OnTokenValidated: " + context.SecurityToken);
+            return Task.CompletedTask;
+        }
+    };
 });
 
 builder.Services.AddAuthorization();
