@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection.PortableExecutable;
+using System.Security.Claims;
 using UserService.Models;
 using UserService.RabbitMQ;
 using UserService.Services.Interfaces;
@@ -23,17 +25,17 @@ builder.Services.AddAuthentication(options =>
     options.IncludeErrorDetails = true;
     options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
     {
-        NameClaimType = "name",
-        RoleClaimType = "https://schemas.quickstarts.com/roles",
+        NameClaimType = ClaimTypes.NameIdentifier
     };
 });
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
-    options.AddPolicy("UserPolicy", policy => policy.RequireRole("User"));
+    options.AddPolicy("Admin", policy => policy.Requirements.Add(new HasScopeRequirement("Admin", "dev-mmxpntzef0pvzjib.us.auth0.com")));
+    options.AddPolicy("User", policy => policy.Requirements.Add(new HasScopeRequirement("User", "dev-mmxpntzef0pvzjib.us.auth0.com")));
 });
 
+builder.Services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -81,6 +83,7 @@ if (app.Environment.IsDevelopment())
 app.UseRouting();
 app.UseCors(allowSpecificOrigins);
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -20,9 +20,10 @@ function Navbar() {
     const newUser = localStorage.getItem("newUser");
     const role = localStorage.getItem("roles");
     const token = getAccessTokenSilently();
-    console.log(token);
+       
+    console.log(localStorage.getItem("token"));
     console.log(role);
-    console.log(localStorage.getItem("newUser"));
+    console.log(token);
 
     const registerNewUser = async () => {
         await createUser(user.nickname).then(localStorage.removeItem("newUser"));
