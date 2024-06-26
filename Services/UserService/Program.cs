@@ -10,6 +10,7 @@ using System.Text;
 using UserService.Models;
 using UserService.RabbitMQ;
 using UserService.Services.Interfaces;
+using static System.Net.WebRequestMethods;
 
 var builder = WebApplication.CreateBuilder(args);
 const string allowSpecificOrigins = "dev";
@@ -28,17 +29,16 @@ builder.Services.AddAuthentication(options =>
         "http://default-user-role-api",
         "https://dev-mmxpntzef0pvzjib.us.auth0.com/userinfo",
     ];
+    options.Authority = "https://dev-mmxpntzef0pvzjib.us.auth0.com/userinfo";
+    options.Audience = "http://default-user-role-api";
 
-    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    options.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidIssuer = "https://dev-mmxpntzef0pvzjib.us.auth0.com",
-        ValidAudiences = validAudiences,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("pSfgCnXu9uoTObKzK2muN9ZwsObuv7T4"))
+        NameClaimType = ClaimTypes.NameIdentifier
     };
 });
 
 
-builder.Services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
