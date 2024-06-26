@@ -60,6 +60,7 @@ jobs:
           email: "bakalov.peter@gmail.com"
           output: ethicalcheck-results.sarif
           format: sarif
+          sarif-result-file: "ethicalcheck-results.sarif"
 
        - name: Upload sarif file to repository
          uses: github/codeql-action/upload-sarif@v2
