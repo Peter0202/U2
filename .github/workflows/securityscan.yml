@@ -1,6 +1,7 @@
 name: "CodeQL Security Scan"
 on: [push]
 
+#test
 jobs:
   analyze:
     name: Analyze
