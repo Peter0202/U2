@@ -12,12 +12,6 @@ metadata:
 spec:
   gatewayClassName: eg
   listeners:
-    - name: https
-      protocol: HTTPS
-      port: 443
-      tls:
-        certificateRefs:
-        - group: ""
-          kind: Secret
-          name: example-cert
-        mode: Terminate
+    - name: http
+      protocol: HTTP
+      port: 80

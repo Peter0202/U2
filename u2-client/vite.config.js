@@ -9,10 +9,6 @@ export default defineConfig({
   server: {
     host: true,
     strictPort: true,
-    port: 3000,
-    https: {
-      key: fs.readFileSync(path.resolve(__dirname, '../deploy/certFront/www.example.com.key')),
-      cert: fs.readFileSync(path.resolve(__dirname, '../deploy/certFront/www.example.com.crt'))
-    }
+    port: 3000
   }
 })
