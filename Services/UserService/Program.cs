@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System.Configuration;
 using System.Reflection.PortableExecutable;
 using System.Security.Claims;
 using System.Text;
@@ -14,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 const string allowSpecificOrigins = "dev";
 // Add services to the container.
 
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -21,10 +23,16 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
+    List<string> validAudiences =
+    [
+        "http://default-user-role-api",
+        "https://dev-mmxpntzef0pvzjib.us.auth0.com/userinfo",
+    ];
+
     options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
     {
         ValidIssuer = "https://dev-mmxpntzef0pvzjib.us.auth0.com",
-        ValidAudience = "http://default-user-role-api",
+        ValidAudiences = validAudiences,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("pSfgCnXu9uoTObKzK2muN9ZwsObuv7T4"))
     };
 });
