@@ -75,7 +75,8 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
 
   <Auth0Provider domain= {domain} cacheLocation='localstorage' useRefreshTokens={true} clientId={clientId} authorizationParams={{
-    redirect_uri: redirectUri}}>
+    redirect_uri: redirectUri,
+    audience: "http://default-user-role-api"}}>
     <QueryClientProvider client={httpClient}>
       <RouterProvider router={router} />
     </QueryClientProvider>
