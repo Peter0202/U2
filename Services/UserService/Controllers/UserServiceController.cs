@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UserService.Models;
 using UserService.Services.Interfaces;
@@ -29,6 +30,7 @@ namespace UserService.Controllers
 
         [HttpGet()]
         [ActionName("GetAllUsers")]
+        [Authorize(Policy = "UserPolicy")]
         public IEnumerable<User> GetAll()
         {
             return _userService.GetUsers();
