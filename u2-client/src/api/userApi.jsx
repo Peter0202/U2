@@ -2,7 +2,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios'
 
 const BASE_URL = 'http://48.217.13.145/api/UserService';
-const { getAccessTokenSilently } = useAuth0();
+
+const { getAccessTokenSilently } = useAuth0;
 
 export const getAllUsers = async () => {
     try {
