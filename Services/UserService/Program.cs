@@ -19,7 +19,7 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
-    options.Authority = "dev-mmxpntzef0pvzjib.us.auth0.com";
+    options.Authority = "https://dev-mmxpntzef0pvzjib.us.auth0.com";
     options.Audience = "http://default-user-role-api";
     options.RequireHttpsMetadata = false;
     options.IncludeErrorDetails = true;
@@ -32,7 +32,6 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Admin", policy => policy.Requirements.Add(new HasScopeRequirement("Admin", "dev-mmxpntzef0pvzjib.us.auth0.com")));
-    options.AddPolicy("User", policy => policy.Requirements.Add(new HasScopeRequirement("User", "dev-mmxpntzef0pvzjib.us.auth0.com")));
 });
 
 builder.Services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();

@@ -7,7 +7,7 @@ const { getAccessTokenSilently } = useAuth0;
 
 export const getAllUsers = async () => {
     try {
-        const token = await getAccessTokenSilently();
+        const token = getAccessTokenSilently();
         const res = (await axios.get(BASE_URL + `/GetAllUsers`, {headers: {"Authorization": `Bearer ${token}`}})).data;
         return res;
     }
