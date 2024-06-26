@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using UserService.Models;
 using UserService.Services.Interfaces;
 
@@ -30,18 +31,18 @@ namespace UserService.Controllers
 
         [HttpGet()]
         [ActionName("GetAllUsers")]
-        public IEnumerable<User> GetAll()
+        public IActionResult GetAll()
         {
             var re = Request;
             var headers = re.Headers;
             headers.TryGetValue("Roles", out var role);
             if (role == "Admin")
             {
-                return _userService.GetUsers();
+                return Ok(_userService.GetUsers());
             }
             else
             {
-                return Enumerable.Empty<User>();
+                return Unauthorized();
             }
         }
 
