@@ -10,51 +10,14 @@ using System.Text;
 using UserService.Models;
 using UserService.RabbitMQ;
 using UserService.Services.Interfaces;
-using static System.Net.WebRequestMethods;
 
 var builder = WebApplication.CreateBuilder(args);
 const string allowSpecificOrigins = "dev";
+// Add services to the container.
 
 
 
 builder.Services.AddControllers();
-
-// Add authentication services
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.Authority = "https://dev-mmxpntzef0pvzjib.us.auth0.com/";
-    options.Audience = "http://default-user-role-api";
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = $"https://dev-mmxpntzef0pvzjib.us.auth0.com/",
-        ValidAudiences = new[] { "http://default-user-role-api", "https://dev-mmxpntzef0pvzjib.us.auth0.com/userinfo" }, 
-    };
-
-    options.Events = new JwtBearerEvents
-    {
-        OnAuthenticationFailed = context =>
-        {
-            Console.WriteLine("OnAuthenticationFailed: " + context.Exception.Message);
-            return Task.CompletedTask;
-        },
-        OnTokenValidated = context =>
-        {
-            Console.WriteLine("OnTokenValidated: " + context.SecurityToken);
-            return Task.CompletedTask;
-        }
-    };
-});
-
-builder.Services.AddAuthorization();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
