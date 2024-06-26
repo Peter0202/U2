@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'http://48.217.13.145/api/UserService';
+const BASE_URL = 'https://www.u2.com/api/UserService';
 export const getAllUsers = async () => {
     try {
         const res = (await axios.get(BASE_URL + `/GetAllUsers`)).data;
