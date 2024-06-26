@@ -15,8 +15,9 @@ export const getAllUsers = async () => {
 }
 
 export const getUserByUsername = async (username) => {
+    const roles = localStorage.getItem("roles")
     try {
-        return (await axios.get(BASE_URL + `/GetByUsername/?username=${username}`)).data;
+        return (await axios.get(BASE_URL + `/GetByUsername/?username=${username}`, {headers: {"Roles": roles}})).data;
     }
     catch (err) {
         console.log(err);
